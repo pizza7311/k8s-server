@@ -19,4 +19,9 @@ export class AppController {
   getTest(): string {
     return this.appService.getTest();
   }
+
+  @Get('now')
+  getNow(): string {
+    return new Date().toISOString();
+  }
 }
