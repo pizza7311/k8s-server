@@ -8,5 +8,5 @@ resources:
 # 이 부분이 나중에 GitHub Action에 의해 자동으로 업데이트됩니다.
 images:
   - name: test-backend
-    newName: ${{ secrets.AWS_REGISTRY }}/${{ secrets.AWS_REPOSITORY_PROD }}
+    newName: placeholder 
     newTag: latest
