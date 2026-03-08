@@ -1,0 +1,41 @@
+# k8s/prod/deployments.yaml 수정본
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-backend
+  template:
+    metadata:
+      labels:
+        app: test-backend
+    spec:
+      containers:
+      - name: nest-app
+        image: test-backend # kustomization.yaml에서 이 이름을 찾아 바꿉니다
+        ports:
+        - containerPort: 3000
+        # 헬스체크 추가 (이전에 말씀드린 내용)
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        # 리소스 제한 (권장)
+        # resources:
+        #   requests:
+        #     cpu: "100m"
+        #     memory: "256Mi"
+        #   limits:
+        #     cpu: "250m"
+        #     memory: "512Mi"
