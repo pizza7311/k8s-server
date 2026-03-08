@@ -9,4 +9,8 @@ export class AppService {
   getHealthCheck(): string {
     return 'OK';
   }
+
+  getTest(): string {
+    return 'This is a new endpoint.';
+  }
 }

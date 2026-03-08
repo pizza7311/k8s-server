@@ -14,4 +14,9 @@ export class AppController {
   getHealthCheck(): string {
     return this.appService.getHealthCheck();
   }
+
+  @Get('test')
+  getTest(): string {
+    return this.appService.getTest();
+  }
 }
